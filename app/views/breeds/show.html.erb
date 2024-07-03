@@ -12,6 +12,6 @@
 <p>Sub-Breeds:</p>
 <ul>
   <% @breed.sub_breeds.each do |sub_breed| %>
-    <li><%= sub_breed.name %></li>
+    <li><%= link_to sub_breed.name, breed_sub_breed_path(@breed, sub_breed) %></li>
   <% end %>
 </ul>

@@ -51,7 +51,7 @@ end
 
 # Generate fake images for breeds using Faker
 Breed.all.each do |breed|
-  3.times do
+  5.times do
     Image.create!(
       url: Faker::LoremFlickr.image(search_terms: ['dog']),
       breed: breed
@@ -60,11 +60,11 @@ Breed.all.each do |breed|
 end
 
 # Generate fake owners using Faker
-10.times do
+50.times do
   owner = Owner.create!(name: Faker::Name.name)
 
-  # Associate each owner with 2-3 random breeds
-  owner.breeds << Breed.order('RANDOM()').limit(2)
+  # Associate each owner with 3-5 random breeds
+  owner.breeds << Breed.order('RANDOM()').limit(5)
 end
 
 puts "Database has been seeded successfully!"

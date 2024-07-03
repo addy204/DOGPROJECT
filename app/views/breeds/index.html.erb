@@ -1,0 +1,7 @@
+<h1>All Breeds</h1>
+<ul>
+  <% @breeds.each do |breed| %>
+    <li><%= link_to breed.name, breed_path(breed) %></li>
+  <% end %>
+</ul>
+<%= paginate @breeds %>

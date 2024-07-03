@@ -23,6 +23,12 @@ def fetch_dog_api_data(breed_name)
   response.parsed_response.first
 end
 
+# Fetch random dog images from Dog CEO's Dog API
+def fetch_dog_image
+  response = HTTParty.get('https://dog.ceo/api/breeds/image/random')
+  response.parsed_response['message']
+end
+
 # Seed breeds and sub_breeds from Dog CEO's Dog API
 dog_ceo_data = fetch_dog_ceo_data
 
@@ -49,11 +55,11 @@ dog_ceo_data.each do |breed_name, sub_breeds|
   end
 end
 
-# Generate fake images for breeds using Faker
+# Generate fake images for breeds using Dog CEO's Dog API
 Breed.all.each do |breed|
-  5.times do
+  4.times do
     Image.create!(
-      url: Faker::LoremFlickr.image(search_terms: ['dog']),
+      url: fetch_dog_image,
       breed: breed
     )
   end

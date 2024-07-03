@@ -25,8 +25,20 @@ end
 
 # Fetch random dog images from Dog CEO's Dog API
 def fetch_dog_image
-  response = HTTParty.get('https://dog.ceo/api/breeds/image/random')
-  response.parsed_response['message']
+  retries = 3
+  begin
+    response = HTTParty.get('https://dog.ceo/api/breeds/image/random')
+    response.parsed_response['message']
+  rescue SocketError => e
+    retries -= 1
+    if retries > 0
+      sleep(1)
+      retry
+    else
+      puts "Failed to fetch image after 3 attempts: #{e.message}"
+      nil
+    end
+  end
 end
 
 # Seed breeds and sub_breeds from Dog CEO's Dog API
@@ -53,15 +65,18 @@ dog_ceo_data.each do |breed_name, sub_breeds|
   else
     puts "Skipping breed: #{breed_name} due to missing data"
   end
-end
 
-# Generate fake images for breeds using Dog CEO's Dog API
-Breed.all.each do |breed|
+  # Generate up to 4 images for each breed using Dog CEO's Dog API
   4.times do
-    Image.create!(
-      url: fetch_dog_image,
-      breed: breed
-    )
+    image_url = fetch_dog_image
+    if image_url
+      Image.create!(
+        url: image_url,
+        breed: breed
+      )
+    else
+      puts "Skipping image creation for breed: #{breed_name} due to fetch failure"
+    end
   end
 end
 

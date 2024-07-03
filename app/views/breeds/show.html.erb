@@ -5,7 +5,7 @@
 <p>Height: <%= @breed.breed_detail&.height %></p>
 <p>Images:</p>
 <ul>
-  <% @breed.images.each do |image| %>
+  <% @breed.images.limit(4).each do |image| %>
     <li><%= image_tag image.url %></li>
   <% end %>
 </ul>

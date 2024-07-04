@@ -48,7 +48,8 @@ dog_ceo_data.each do |breed_name, sub_breeds|
   breed = Breed.find_or_create_by!(name: breed_name.capitalize)
 
   sub_breeds.each do |sub_breed_name|
-    SubBreed.find_or_create_by!(name: sub_breed_name.capitalize, breed: breed)
+    sub_breed = SubBreed.find_or_create_by!(name: sub_breed_name.capitalize, breed: breed)
+    sub_breed.update(description: Faker::Lorem.paragraph)
   end
 
   # Fetch breed details from The Dog API

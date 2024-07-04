@@ -1,7 +1,21 @@
 <h1>All Breeds</h1>
+
+<%= form_with url: breeds_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :query, "Search Breeds:" %>
+    <%= text_field_tag :query, params[:query] %>
+    
+    <%= label_tag :owner_id, "Filter by Owner:" %>
+    <%= select_tag :owner_id, options_from_collection_for_select(Owner.all, :id, :name, params[:owner_id]), include_blank: true %>
+    
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
 <ul>
   <% @breeds.each do |breed| %>
     <li><%= link_to breed.name, breed_path(breed) %></li>
   <% end %>
 </ul>
+
 <%= paginate @breeds %>

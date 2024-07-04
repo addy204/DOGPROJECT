@@ -1,0 +1,10 @@
+<h1><%= @owner.name %></h1>
+
+<h2>Breeds</h2>
+<ul>
+  <% @owner.breeds.each do |breed| %>
+    <% if breed.breed_detail %>
+      <li><%= link_to breed.name, breed_path(breed) %></li>
+    <% end %>
+  <% end %>
+</ul>

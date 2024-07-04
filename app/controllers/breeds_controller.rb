@@ -14,6 +14,9 @@ class BreedsController < ApplicationController
   end
 
   def show
-    @breed = Breed.find(params[:id])
+    @breed = Breed.includes(:breed_detail, :images, :sub_breeds).find(params[:id])
+    unless @breed.breed_detail
+      redirect_to breeds_path, alert: "Breed data is incomplete"
+    end
   end
 end

@@ -1,14 +1,17 @@
 <h1><%= @breed.name %></h1>
+
 <p>Temperament: <%= @breed.breed_detail&.temperament %></p>
 <p>Life Span: <%= @breed.breed_detail&.life_span %></p>
 <p>Weight: <%= @breed.breed_detail&.weight %></p>
 <p>Height: <%= @breed.breed_detail&.height %></p>
+
 <p>Images:</p>
 <ul>
   <% @breed.images.limit(4).each do |image| %>
     <li><%= image_tag image.url %></li>
   <% end %>
 </ul>
+
 <p>Sub-Breeds:</p>
 <ul>
   <% @breed.sub_breeds.each do |sub_breed| %>

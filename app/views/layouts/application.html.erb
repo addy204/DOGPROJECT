@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>DogProject</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
-
 <body>
   <header>
     <nav>
@@ -17,7 +16,7 @@
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'About', about_path %></li>
         <li><%= link_to 'Breeds', breeds_path %></li>
-        <li><%= link_to 'Owners', owners_path %></li> <!-- Add this line -->
+        <li><%= link_to 'Owners', owners_path %></li>
       </ul>
     </nav>
   </header>

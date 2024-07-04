@@ -13,11 +13,15 @@
 </ul>
 
 <p>Sub-Breeds:</p>
-<ul>
-  <% @breed.sub_breeds.each do |sub_breed| %>
-    <li><%= link_to sub_breed.name, breed_sub_breed_path(@breed, sub_breed) %></li>
-  <% end %>
-</ul>
+<% if @breed.sub_breeds.any? %>
+  <ul>
+    <% @breed.sub_breeds.each do |sub_breed| %>
+      <li><%= link_to sub_breed.name, breed_sub_breed_path(@breed, sub_breed) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No sub-breeds available for this breed.</p>
+<% end %>
 
 <p>Owners:</p>
 <ul>

@@ -18,3 +18,12 @@
     <li><%= link_to sub_breed.name, breed_sub_breed_path(@breed, sub_breed) %></li>
   <% end %>
 </ul>
+
+<p>Owners:</p>
+<ul>
+  <% @breed.owners.each do |owner| %>
+    <li><%= link_to owner.name, owner_path(owner) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Breeds', breeds_path %>

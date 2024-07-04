@@ -1,33 +1,41 @@
-<h1><%= @breed.name %></h1>
+<h1 class="text-4xl font-bold mb-6"><%= @breed.name %></h1>
 
-<p>Temperament: <%= @breed.breed_detail&.temperament %></p>
-<p>Life Span: <%= @breed.breed_detail&.life_span %></p>
-<p>Weight: <%= @breed.breed_detail&.weight %></p>
-<p>Height: <%= @breed.breed_detail&.height %></p>
+<div class="mb-4">
+  <p class="mb-2"><strong>Temperament:</strong> <%= @breed.breed_detail&.temperament %></p>
+  <p class="mb-2"><strong>Life Span:</strong> <%= @breed.breed_detail&.life_span %></p>
+  <p class="mb-2"><strong>Weight:</strong> <%= @breed.breed_detail&.weight %></p>
+  <p class="mb-2"><strong>Height:</strong> <%= @breed.breed_detail&.height %></p>
+</div>
 
-<p>Images:</p>
-<ul>
-  <% @breed.images.limit(4).each do |image| %>
-    <li><%= image_tag image.url %></li>
-  <% end %>
-</ul>
-
-<p>Sub-Breeds:</p>
-<% if @breed.sub_breeds.any? %>
-  <ul>
-    <% @breed.sub_breeds.each do |sub_breed| %>
-      <li><%= link_to sub_breed.name, breed_sub_breed_path(@breed, sub_breed) %></li>
+<div class="mb-4">
+  <p class="font-bold">Images:</p>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+    <% @breed.images.limit(4).each do |image| %>
+      <li><%= image_tag image.url, class: "rounded-lg shadow" %></li>
     <% end %>
   </ul>
-<% else %>
-  <p>No sub-breeds available for this breed.</p>
-<% end %>
+</div>
 
-<p>Owners:</p>
-<ul>
-  <% @breed.owners.each do |owner| %>
-    <li><%= link_to owner.name, owner_path(owner) %></li>
+<div class="mb-4">
+  <p class="font-bold">Sub-Breeds:</p>
+  <% if @breed.sub_breeds.any? %>
+    <ul class="list-disc list-inside">
+      <% @breed.sub_breeds.each do |sub_breed| %>
+        <li><%= link_to sub_breed.name, breed_sub_breed_path(@breed, sub_breed), class: "text-blue-500 hover:text-blue-700" %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No sub-breeds available for this breed.</p>
   <% end %>
-</ul>
+</div>
 
-<%= link_to 'Back to Breeds', breeds_path %>
+<div class="mb-4">
+  <p class="font-bold">Owners:</p>
+  <ul class="list-disc list-inside">
+    <% @breed.owners.each do |owner| %>
+      <li><%= link_to owner.name, owner_path(owner), class: "text-blue-500 hover:text-blue-700" %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to 'Back to Breeds', breeds_path, class: "mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700" %>

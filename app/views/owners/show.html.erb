@@ -1,10 +1,12 @@
-<h1><%= @owner.name %></h1>
+<h1 class="text-4xl font-bold mb-6"><%= @owner.name %></h1>
 
-<h2>Breeds</h2>
-<ul>
-  <% @owner.breeds.each do |breed| %>
-    <li><%= link_to breed.name, breed_path(breed) %></li>
-  <% end %>
-</ul>
+<div class="mb-4">
+  <p class="font-bold">Breeds:</p>
+  <ul class="list-disc list-inside">
+    <% @owner.breeds.each do |breed| %>
+      <li><%= link_to breed.name, breed_path(breed), class: "text-blue-500 hover:text-blue-700" %></li>
+    <% end %>
+  </ul>
+</div>
 
-<%= link_to 'Back to Owners', owners_path %>
+<%= link_to 'Back to Owners', owners_path, class: "mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700" %>

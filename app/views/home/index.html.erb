@@ -1,2 +1,8 @@
-<h1>Welcome to DogProject</h1>
-<p>Explore various dog breeds and their details.</p>
+<div class="text-center">
+  <h1 class="text-5xl font-bold mb-6">Welcome to DogProject</h1>
+  <p class="text-lg mb-8">Explore various dog breeds and their details.</p>
+  <div class="space-x-4">
+    <%= link_to 'View Breeds', breeds_path, class: 'px-6 py-3 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700' %>
+    <%= link_to 'View Owners', owners_path, class: 'px-6 py-3 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700' %>
+  </div>
+</div>

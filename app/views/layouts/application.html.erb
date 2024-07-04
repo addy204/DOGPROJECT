@@ -9,18 +9,20 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'About', about_path %></li>
-        <li><%= link_to 'Breeds', breeds_path %></li>
-        <li><%= link_to 'Owners', owners_path %></li>
+<body class="bg-gray-100 text-gray-900">
+  <header class="bg-white shadow mb-6">
+    <nav class="container mx-auto p-4">
+      <ul class="flex space-x-4">
+        <li><%= link_to 'Home', root_path, class: 'text-blue-500 hover:text-blue-700' %></li>
+        <li><%= link_to 'About', about_path, class: 'text-blue-500 hover:text-blue-700' %></li>
+        <li><%= link_to 'Breeds', breeds_path, class: 'text-blue-500 hover:text-blue-700' %></li>
+        <li><%= link_to 'Owners', owners_path, class: 'text-blue-500 hover:text-blue-700' %></li>
       </ul>
     </nav>
   </header>
 
-  <%= yield %>
+  <main class="container mx-auto p-4 bg-white rounded-lg shadow-lg">
+    <%= yield %>
+  </main>
 </body>
 </html>

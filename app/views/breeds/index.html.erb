@@ -1,21 +1,27 @@
-<h1>All Breeds</h1>
+<h1 class="text-4xl font-bold mb-6">All Breeds</h1>
 
-<%= form_with url: breeds_path, method: :get, local: true do %>
-  <div>
-    <%= label_tag :query, "Search Breeds:" %>
-    <%= text_field_tag :query, params[:query] %>
-    
-    <%= label_tag :owner_id, "Filter by Owner:" %>
-    <%= select_tag :owner_id, options_from_collection_for_select(Owner.all, :id, :name, params[:owner_id]), include_blank: true %>
-    
-    <%= submit_tag "Search" %>
+<%= form_with url: breeds_path, method: :get, local: true, class: "mb-8" do %>
+  <div class="flex space-x-4">
+    <div class="w-1/2">
+      <%= label_tag :query, "Search Breeds:", class: "block text-sm font-medium text-gray-700" %>
+      <%= text_field_tag :query, params[:query], class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+    <div class="w-1/2">
+      <%= label_tag :owner_id, "Filter by Owner:", class: "block text-sm font-medium text-gray-700" %>
+      <%= select_tag :owner_id, options_from_collection_for_select(Owner.all, :id, :name, params[:owner_id]), include_blank: true, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+    <div class="flex items-end">
+      <%= submit_tag "Search", class: "px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700" %>
+    </div>
   </div>
 <% end %>
 
-<ul>
+<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   <% @breeds.each do |breed| %>
-    <li><%= link_to breed.name, breed_path(breed) %></li>
+    <li class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+      <%= link_to breed.name, breed_path(breed), class: "text-lg font-semibold text-blue-500 hover:text-blue-700" %>
+    </li>
   <% end %>
 </ul>
 
-<%= paginate @breeds %>
+<%= paginate @breeds, class: "mt-8" %>

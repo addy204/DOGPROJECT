@@ -3,11 +3,11 @@ class BreedsController < ApplicationController
     @breeds = Breed.all
 
     if params[:query].present?
-      @breeds = @breeds.where('name LIKE ?', "%#{params[:query]}%")
+      @breeds = @breeds.where('breeds.name LIKE ?', "%#{params[:query]}%")
     end
 
     if params[:owner_id].present?
-      @breeds = @breeds.joins(:owners).where(owners: { id: params[:owner_id] }).distinct
+      @breeds = @breeds.joins(:owners).where('owners.id = ?', params[:owner_id]).distinct
     end
 
     @breeds = @breeds.page(params[:page]).per(10)

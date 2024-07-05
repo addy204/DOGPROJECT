@@ -80,3 +80,4 @@ end
 end
 
 puts "Database has been seeded successfully!"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
